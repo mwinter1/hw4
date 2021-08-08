@@ -1,0 +1,70 @@
+body {
+    background-color: black;
+}
+    
+#row1 {
+    padding: 10px;
+}
+    
+#row2 {
+    justify-content: center;
+}
+    
+.col-3 {
+    color: #FFF200;
+    text-align: center;
+}
+    
+#highScores {
+    color: #FFF200;
+}
+    
+.display-3 {
+    text-align: center;
+    margin-top: -50px;
+}
+    
+.lead {
+    text-align: center;
+}
+    
+.jumbotron {
+    background-color: #64A966;
+    height: 270px;
+}
+    
+.buttonRow {
+    justify-content: center;
+    padding: 5px;
+}
+    
+.card {
+    background-color: #64A966;
+}
+    
+.col-4 {
+    text-align: -webkit-center;
+}
+    
+#questions {
+    display: none;
+}
+    
+#correctIncorrect {
+    font-size: xx-large;
+}
+    
+#buttonInitials {
+    display: none;
+}
+    
+#inlineFormInput {
+    display: none;
+    width: 30%;
+}
+   
+#header {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
