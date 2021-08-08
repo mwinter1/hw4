@@ -8,8 +8,9 @@ let startButton = document.getElementById("startQuiz");
 let cardQuestions = document.getElementById("questions");
 let displayJumbo = document.querySelector(".jumbotron");
 let quizBtn = document.querySelectorAll(".quizBtn");
-    // Questions
-    let questions = [{
+
+// Questions
+let questions = [{
     question: "What are arrow functions?",
     answer1: "Declarative variables",
     answer2: "Shorter syntax for declaring functions",
@@ -45,14 +46,15 @@ let quizBtn = document.querySelectorAll(".quizBtn");
     answer4: "If multiple users can access the same site",
     correct: "The accessibility of variables and functions at various parts in one’s code"
     }];
-    let answer1 = document.getElementById("button1");
-    let answer2 = document.getElementById("button2");
-    let answer3 = document.getElementById("button3");
-    let answer4 = document.getElementById("button4");
-    let question = document.getElementById("questions");
-    let correctAnswer = document.getElementById("correctIncorrect");
-    let incorrectAnswer = document.getElementById("correctIncorrect");
-    let runningQuestion = 0;
+    
+let answer1 = document.getElementById("button1");
+let answer2 = document.getElementById("button2");
+let answer3 = document.getElementById("button3");
+let answer4 = document.getElementById("button4");
+let question = document.getElementById("questions");
+let correctAnswer = document.getElementById("correctIncorrect");
+let incorrectAnswer = document.getElementById("correctIncorrect");
+let runningQuestion = 0;
     
 // Functions
 function Timer() {
@@ -62,21 +64,21 @@ function Timer() {
       
         if(seconds === 0) {
           clearInterval(timerInterval);
-        //   cardQuestions.setAttribute("style", "display: none");
-        //   displayJumbo.setAttribute("style", "display: block");
-        //   score.textContent = "Your score is: " + secondsLeft;
-        //   startButton.setAttribute("style", "display: none");
-        //   submitButton.setAttribute("style", "display: inline");
-        //   inputLine.setAttribute("style", "display: inline-block");
+          cardQuestions.setAttribute("style", "display: none");
+          displayJumbo.setAttribute("style", "display: block");
+          score.textContent = "Your score is: " + secondsLeft;
+          startButton.setAttribute("style", "display: none");
+          submitButton.setAttribute("style", "display: inline");
+          inputLine.setAttribute("style", "display: inline-block");
       
           } else if (runningQuestion === 5) {
             clearInterval(timerInterval);
-            // cardQuestions.setAttribute("style", "display: none");
-            // displayJumbo.setAttribute("style", "display: block");
-            // yourScore.textContent = "Your score is: " + secondsLeft;
-            // startButton.setAttribute("style", "display: none");
-            // submitButton.setAttribute("style", "display: inline");
-            // inputLine.setAttribute("style", "display: inline-block");
+            cardQuestions.setAttribute("style", "display: none");
+            displayJumbo.setAttribute("style", "display: block");
+            score.textContent = "Your score is: " + secondsLeft;
+            startButton.setAttribute("style", "display: none");
+            submitButton.setAttribute("style", "display: inline");
+            inputLine.setAttribute("style", "display: inline-block");
           }
     }, 1000);
   }
@@ -85,8 +87,8 @@ function startGame() {
     console.log("click");
     Timer();
     firstQuestion();
-    // cardQuestions.setAttribute("style", "display: block");
-    // displayJumbo.setAttribute("style", "display: none");
+    cardQuestions.setAttribute("style", "display: block");
+    displayJumbo.setAttribute("style", "display: none");
 }
 
 function firstQuestion() {
@@ -100,18 +102,26 @@ function firstQuestion() {
 
 // Listeners
 startButton.addEventListener("click", startGame);
-// generalized listener for all question buttons
-
-
-// // Local Storage
-// highScores.push(finalScore);
-// localStorage.setItem("highScores", JSON.stringify(highscore));
-
-// // High Score
-// let highscore = JSON.parse(localStorage.getItem("highScores")) || [];
-
-// submitButton.addEventListener("click", function(event){
-//   event.stopPropagation();  
-//   let initials = inputLine.value;
-//   let finalScore = {initials, secondsLeft};
-// })
+// Generalized listener for all question buttons
+for (var i = 0; i < quizBtn.length; i++) {
+    quizBtn[i].addEventListener("click", function userAnswer(event) {
+      event.stopPropagation();
+      if (event.currentTarget.innerText === questions[runningQuestion].correct){
+      correctAnswer.textContent = "Correct + 5 sec";
+      correctAnswer.setAttribute("style", "color: green");
+      seconds = seconds + 5;
+      console.log("correct");
+    } else {
+      incorrectAnswer.textContent = "Incorrect - 5 sec";
+      incorrectAnswer.setAttribute("style", "color: red");
+      seconds = seconds - 5;
+      console.log("Incorrect minus 5 seconds");
+    }
+    console.log(runningQuestion);
+    runningQuestion++;
+  
+    if (runningQuestion < 5) {
+      firstQuestion();
+    }
+  });
+  }
